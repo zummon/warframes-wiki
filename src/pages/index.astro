@@ -1,0 +1,39 @@
+---
+import Root from '../layouts/Root.astro';
+
+let warframes = await fetch('https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Warframes.json')
+warframes = await warframes.json();
+warframes = warframes.filter((warframe) => {
+	return warframe.isPrime
+})
+---
+
+<Root title="">
+	<div class="">
+		{warframes.map((warframe) => {
+			return <>
+				<div>
+					<details>
+						<summary class="text-lg">{warframe.name}</summary>
+						{warframe.components?.map((component) => {
+							return <>
+								<ul class="">
+									<li>
+										<span class="font-medium">{component.name}</span>
+										{component.drops?.map((drop) => {
+											return <>
+												<span>{drop.location}</span>
+												<span class="last:hidden">,</span>
+											</>
+										})}
+									</li>
+								</ul>
+							</>
+						})}
+					</details>
+				</div>
+			</>
+		})}
+	</div>
+</Root>
+

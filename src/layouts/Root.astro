@@ -1,0 +1,27 @@
+---
+const { title } = Astro.props;
+
+---
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<!-- https://unpkg.com/@tailwindcss/browser@4 -->
+		<script src="https://unpkg.com/@tailwindcss/browser@4.0.5/dist/index.global.js"></script>
+		<style type="text/tailwindcss">
+      @theme {
+        
+      }
+    </style>
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+    Made by Teerapat Anantarattanachai<br>
+    Something breaks, needs upgrade. Let me know<br>
+		Thanks to <a class="underline" href="https://github.com/WFCD/warframe-items/" target="_blank">https://github.com/WFCD/warframe-items/</a>
+	</body>
+</html>
