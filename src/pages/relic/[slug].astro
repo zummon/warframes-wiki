@@ -1,0 +1,46 @@
+---
+import Root from "../../layouts/Root.astro";
+
+export async function getStaticPaths() {
+	let relics = await fetch(
+		"https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Relics.json",
+	);
+	relics = await relics.json();
+	return relics.map((relic) => {
+		return {
+			params: { slug: relic.name },
+			props: { locations: relic.locations, drops: relic.drops },
+		};
+	});
+}
+
+const { slug } = Astro.params;
+const { locations, drops } = Astro.props;
+---
+
+<Root title={slug}>
+	<div class="p-4">
+		<h1 class="text-lg text-center">{slug}</h1>
+		{
+			locations?.map((location) => {
+				return (
+					<>
+						<div class="">
+							<span>{location.location}</span>
+						</div>
+					</>
+				);
+			})
+		}{
+			drops?.map((drop) => {
+				return (
+					<>
+						<div class="">
+							<span>{drop.location}</span>
+						</div>
+					</>
+				);
+			})
+		}
+	</div>
+</Root>

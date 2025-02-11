@@ -19,9 +19,14 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<div class="text-center p-4">
+			<a href="/">Home</a>
+		</div>
 		<slot />
-    Made by Teerapat Anantarattanachai<br>
-    Something breaks, needs upgrade. Let me know<br>
-		Thanks to <a class="underline" href="https://github.com/WFCD/warframe-items/" target="_blank">https://github.com/WFCD/warframe-items/</a>
+		<div class="text-center p-4">
+			Data from <a class="underline" href="https://github.com/WFCD/warframe-items/" target="_blank">https://github.com/WFCD/warframe-items/</a><br>
+			Made by Teerapat Anantarattanachai<br>
+			Something breaks, needs upgrade. Let me know
+		</div>
 	</body>
 </html>
