@@ -6,21 +6,40 @@ export async function getStaticPaths() {
 		"https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Relics.json",
 	);
 	relics = await relics.json();
-	return relics.map((relic) => {
-		return {
+	let paths = [];
+	let unique = {}
+
+	for (let relic of relics) {
+		let prepare = {
 			params: { slug: relic.name },
-			props: { locations: relic.locations, drops: relic.drops },
-		};
-	});
+			props: { locations: relic.locations, drops: relic.drops, imageName: relic.imageName },
+		}
+		// let word = relic.name.split(" "); 
+  	// word = word.slice(0, 2).join(" "); 
+		// word += 'Relic'
+
+		// unique[word] = prepare
+		paths.push(prepare);
+	};
+
+	for (let key in unique) {
+		paths.push(unique[key])
+	}
+
+	return paths
 }
 
 const { slug } = Astro.params;
-const { locations, drops } = Astro.props;
+const { locations, drops, imageName } = Astro.props;
 ---
 
 <Root title={slug}>
 	<div class="p-4">
 		<h1 class="text-lg text-center">{slug}</h1>
+		<img
+			class="size-32 mx-auto"
+			src={`https://raw.githubusercontent.com/WFCD/warframe-items/master/data/img/${imageName}`}
+		/>
 		{
 			locations?.map((location) => {
 				return (
