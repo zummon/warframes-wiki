@@ -1,10 +1,8 @@
 ---
 import Root from "../../layouts/Root.astro";
+import { getWarframes } from '../../data'
 
-let warframes = await fetch(
-	"https://raw.githubusercontent.com/WFCD/warframe-items/master/data/json/Warframes.json",
-);
-warframes = await warframes.json();
+let warframes = await getWarframes()
 warframes = warframes.filter((warframe) => {
 	return warframe.isPrime;
 });
