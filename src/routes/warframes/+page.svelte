@@ -24,6 +24,7 @@
 						<img
 							class="size-32 mx-auto"
 							src={`https://raw.githubusercontent.com/WFCD/warframe-items/master/data/img/${warframe.imageName}`}
+							alt=""
 						/>
 					</summary>
 					{#each warframe.components || [] as component}

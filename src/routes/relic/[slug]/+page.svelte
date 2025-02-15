@@ -8,6 +8,7 @@
 	<img
 		class="size-32 mx-auto"
 		src={`https://raw.githubusercontent.com/WFCD/warframe-items/master/data/img/${imageName}`}
+		alt=""
 	/>
 	{#each locations || [] as location}
 		<div class="">
