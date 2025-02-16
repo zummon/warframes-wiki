@@ -1,5 +1,5 @@
 <script>
-	let title = "Warframe wiki";
+	let title = "Warframes Wiki";
 	let desc = "";
 </script>
 
@@ -9,6 +9,5 @@
 </svelte:head>
 
 <div class="text-center p-4 font-medium">
-	<a href="/warframes">Warframes</a><br />
-	<a href="/relics">Relics</a>
+Welcome
 </div>

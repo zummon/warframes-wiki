@@ -2,8 +2,10 @@
 	let { children } = $props();
 </script>
 
-<div class="text-center p-4">
+<div class="text-center p-4 underline">
 	<a href="/">Home</a>
+	<a href="/warframes">Warframe</a>
+	<a href="/relics">Relic</a>
 </div>
 
 {@render children()}

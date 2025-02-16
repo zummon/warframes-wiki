@@ -1,19 +1,55 @@
 <script>
+	import { onMount } from "svelte";
+
 	let { data } = $props();
 
-	let title = "Prime Warframes";
-	let desc = "";
+	let meta = { title: "Warframes", desc: "" };
+
+	let grab = $state({ arePrime: data.arePrime, sexes: data.sexes });
+
+	let warframes = $derived.by(() => {
+		let warframes = [];
+		data.warframes.forEach((warframe) => {
+			if (
+				grab.arePrime.includes(warframe.isPrime) &&
+				grab.sexes.includes(warframe.sex)
+			) {
+				warframes.push(warframe);
+			}
+		});
+		return warframes;
+	});
+
+	onMount(() => {});
 </script>
 
 <svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={desc} />
+	<title>{meta.title}</title>
+	<meta name="description" content={meta.desc} />
 </svelte:head>
 
-<a href="/warframes/passive">Passive</a>
+<div class="flex flex-wrap justify-center gap-4 p-4">
+	<a href="/warframes/passive">Passive</a>
+	<details open>
+		<summary>Prime:</summary>
+		<select class="" multiple size="2" bind:value={grab.arePrime}>
+			{#each data.arePrime as isPrime}
+				<option value={isPrime}>{isPrime}</option>
+			{/each}
+		</select>
+	</details>
+	<details>
+		<summary>Sex:</summary>
+		<select class="w-fit" multiple bind:value={grab.sexes}>
+			{#each data.sexes as sex}
+				<option value={sex}>{sex}</option>
+			{/each}
+		</select>
+	</details>
+</div>
 
 <div class="flex flex-wrap justify-center gap-4 p-4">
-	{#each data.warframes as warframe}
+	{#each warframes as warframe}
 		{#if Array.isArray(warframe.components) && warframe.components.length > 0}
 			<div class="">
 				<details class="group">
