@@ -1,11 +1,26 @@
 <script>
 	let { children } = $props();
+
+	let navs = [
+		{
+			content: 'Home',
+			href: '/',
+		},
+		{
+			content: 'Warframe',
+			href: '/warframes',
+		},
+		{
+			content: 'Relic',
+			href: '/relics',
+		},
+	]
 </script>
 
-<div class="text-center p-4 underline">
-	<a href="/">Home</a>
-	<a href="/warframes">Warframe</a>
-	<a href="/relics">Relic</a>
+<div class="text-center p-4">
+	{#each navs as nav}
+		<a class="underline" href={nav.href}>{nav.content}</a>&nbsp;
+	{/each}
 </div>
 
 {@render children()}
